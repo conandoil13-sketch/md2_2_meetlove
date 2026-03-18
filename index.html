@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>미팅 gwa</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="phone-frame">
+        <header class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow">Meeting gwa</span>
+            <h1>캠퍼스 미팅을 더 감도 높게</h1>
+            <p>학교, 계열, 성별로 빠르게 찾고 매칭 후 바로 대화까지 이어지는 모바일 우선 미팅 웹앱</p>
+          </div>
+          <button class="glass-button" id="openCreateHero">미팅 개설</button>
+        </header>
+
+        <main class="screen">
+          <section class="screen-panel" data-screen="home">
+            <section class="toolbar">
+              <label class="searchbox">
+                <span>검색</span>
+                <input
+                  id="searchInput"
+                  type="text"
+                  placeholder="학교, 계열, 설명 키워드로 검색"
+                  autocomplete="off"
+                />
+              </label>
+
+              <div class="segmented" id="genderTabs" aria-label="성별 필터"></div>
+
+              <div class="quick-filters" id="schoolFilters"></div>
+            </section>
+
+            <section class="surface">
+              <div class="section-head">
+                <div>
+                  <p class="section-kicker">메인 피드</p>
+                  <h2>지금 열려 있는 미팅</h2>
+                </div>
+                <span class="result-count" id="resultCount"></span>
+              </div>
+              <div class="meeting-list" id="meetingList"></div>
+            </section>
+          </section>
+
+          <section class="screen-panel hidden" data-screen="requests">
+            <section class="surface compact page-surface">
+              <div class="section-head">
+                <div>
+                  <p class="section-kicker">수락 관리</p>
+                  <h2>들어온 요청 최대 2개 킵</h2>
+                </div>
+              </div>
+              <div class="request-stack" id="requestStack"></div>
+            </section>
+          </section>
+
+          <section class="screen-panel hidden" data-screen="chat">
+            <section class="surface compact page-surface chat-preview">
+              <div class="section-head">
+                <div>
+                  <p class="section-kicker">내부 채팅방</p>
+                  <h2>주선자와 요청자 먼저 연결</h2>
+                </div>
+              </div>
+              <div id="chatRoomPreview"></div>
+            </section>
+          </section>
+        </main>
+
+        <nav class="bottom-nav">
+          <button class="nav-item active" data-nav-screen="home">홈</button>
+          <button class="nav-item" id="openCreateNav">개설</button>
+          <button class="nav-item" data-nav-screen="requests">요청</button>
+          <button class="nav-item" data-nav-screen="chat">채팅</button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="scrim hidden" id="scrim"></div>
+
+    <section class="sheet hidden" id="detailSheet" aria-modal="true" role="dialog">
+      <div class="sheet-handle"></div>
+      <div id="detailContent"></div>
+    </section>
+
+    <section class="sheet hidden" id="profileSheet" aria-modal="true" role="dialog">
+      <div class="sheet-handle"></div>
+      <div id="profileContent"></div>
+    </section>
+
+    <section class="sheet hidden" id="createSheet" aria-modal="true" role="dialog">
+      <div class="sheet-handle"></div>
+      <div class="section-head">
+        <div>
+          <p class="section-kicker">미팅 개설</p>
+          <h2>새 미팅 올리기</h2>
+        </div>
+      </div>
+
+      <form id="createForm" class="create-form">
+        <label>
+          주최측 정보
+          <input name="hostLine" type="text" placeholder="예: 중앙대 경영 남 3:3" required />
+        </label>
+        <label>
+          상대측 희망 계열
+          <select name="targetCategory">
+            <option value="인문계">인문계</option>
+            <option value="자연계">자연계</option>
+            <option value="예체능계">예체능계</option>
+          </select>
+        </label>
+        <label>
+          학교
+          <input name="school" type="text" placeholder="예: 중앙대" required />
+        </label>
+        <label>
+          성별
+          <select name="gender">
+            <option value="남자">남자</option>
+            <option value="여자">여자</option>
+            <option value="혼합">혼합</option>
+          </select>
+        </label>
+        <label>
+          미팅 타입
+          <select name="teamSize">
+            <option value="2:2">2:2</option>
+            <option value="3:3">3:3</option>
+            <option value="4:4">4:4</option>
+          </select>
+        </label>
+        <label>
+          추가 설명
+          <textarea
+            name="description"
+            rows="4"
+            placeholder="분위기, 선호하는 성향, 원하는 일정 등을 간단히 적어주세요"
+            required
+          ></textarea>
+        </label>
+        <button type="submit" class="primary-button">미팅 개설하기</button>
+      </form>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
